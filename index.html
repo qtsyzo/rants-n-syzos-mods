@@ -105,6 +105,7 @@
       padding: 10px;
       box-shadow: 5px 5px 15px #161621, -5px -5px 15px #393951;
       transition: box-shadow 0.3s ease;
+      position: relative;
     }
 
     .platform:hover {
@@ -148,16 +149,23 @@
       color: #b7d8c8;
       user-select: none;
       word-wrap: break-word;
+      display: inline-block;
     }
 
-    .game-status a {
+    /* Separate meta link next to Normal Game */
+    .meta-link {
+      display: inline-block;
+      margin-left: 8px;
+      font-weight: 600;
       color: #82ff9e;
       text-decoration: none;
-      font-weight: 600;
+      user-select: none;
+      transition: color 0.3s ease;
     }
 
-    .game-status a:hover {
+    .meta-link:hover {
       text-decoration: underline;
+      color: #aaffb0;
     }
 
     .status-circle {
@@ -202,18 +210,18 @@
   <input type="text" id="searchBar" placeholder="Search for a game..." onkeyup="searchGames()" />
 
   <div class="game-container" id="gameContainer">
+
     <div class="platform">
       <a href="https://gofile.io/d/4oYPG8" class="game-link" target="_blank" rel="noopener noreferrer">
         <div class="game-card">
           <div class="status-circle green"></div>
           <div class="game-title">Project Coco APK by Syzo</div>
-          <div class="game-status">
-            Normal Game:
-            <a href="https://www.meta.com/en-gb/experiences/project-coco/23955007477483572/" target="_blank" rel="noopener noreferrer">
-              Visit on Meta
-            </a>
-          </div>
+          <div class="game-status">Normal Game:</div>
         </div>
+      </a>
+      <a href="https://www.meta.com/en-gb/experiences/project-coco/23955007477483572/" 
+         class="meta-link" target="_blank" rel="noopener noreferrer">
+        Visit on Meta
       </a>
     </div>
 
@@ -222,13 +230,12 @@
         <div class="game-card">
           <div class="status-circle green"></div>
           <div class="game-title">Fearing Gorilla APK by Rants</div>
-          <div class="game-status">
-            Normal Game:
-            <a href="https://www.meta.com/en-gb/experiences/fearing-gorilla/9917235984964672/" target="_blank" rel="noopener noreferrer">
-              Visit on Meta
-            </a>
-          </div>
+          <div class="game-status">Normal Game:</div>
         </div>
+      </a>
+      <a href="https://www.meta.com/en-gb/experiences/fearing-gorilla/9917235984964672/" 
+         class="meta-link" target="_blank" rel="noopener noreferrer">
+        Visit on Meta
       </a>
     </div>
 
@@ -240,6 +247,7 @@
           <div class="game-status">Normal Game: Not Needed</div>
         </div>
       </a>
+      <!-- No Meta link here since original had none -->
     </div>
 
     <div class="platform">
@@ -247,13 +255,12 @@
         <div class="game-card">
           <div class="status-circle green"></div>
           <div class="game-title">Lethal Fear APK by Syzo</div>
-          <div class="game-status">
-            Normal Game:
-            <a href="https://www.meta.com/en-gb/experiences/lethal-fear/9994841147195949/" target="_blank" rel="noopener noreferrer">
-              Visit on Meta
-            </a>
-          </div>
+          <div class="game-status">Normal Game:</div>
         </div>
+      </a>
+      <a href="https://www.meta.com/en-gb/experiences/lethal-fear/9994841147195949/" 
+         class="meta-link" target="_blank" rel="noopener noreferrer">
+        Visit on Meta
       </a>
     </div>
 
@@ -262,13 +269,12 @@
         <div class="game-card">
           <div class="status-circle green"></div>
           <div class="game-title">Tagging Gorillas 2 Metadata by SillyGoose</div>
-          <div class="game-status">
-            Normal Game:
-            <a href="https://www.meta.com/en-gb/experiences/tagging-gorillas-2/9615763978508086/" target="_blank" rel="noopener noreferrer">
-              Visit on Meta
-            </a>
-          </div>
+          <div class="game-status">Normal Game:</div>
         </div>
+      </a>
+      <a href="https://www.meta.com/en-gb/experiences/tagging-gorillas-2/9615763978508086/" 
+         class="meta-link" target="_blank" rel="noopener noreferrer">
+        Visit on Meta
       </a>
     </div>
 
@@ -277,13 +283,12 @@
         <div class="game-card">
           <div class="status-circle green"></div>
           <div class="game-title">Lethal Ape 5 APK by SillyGoose</div>
-          <div class="game-status">
-            Normal Game:
-            <a href="https://www.meta.com/en-gb/experiences/lethal-ape-5/30011002768547707/" target="_blank" rel="noopener noreferrer">
-              Visit on Meta
-            </a>
-          </div>
+          <div class="game-status">Normal Game:</div>
         </div>
+      </a>
+      <a href="https://www.meta.com/en-gb/experiences/lethal-ape-5/30011002768547707/" 
+         class="meta-link" target="_blank" rel="noopener noreferrer">
+        Visit on Meta
       </a>
     </div>
 
@@ -292,15 +297,15 @@
         <div class="game-card">
           <div class="status-circle green"></div>
           <div class="game-title">Baldi Tag APK by Syzo</div>
-          <div class="game-status">
-            Normal Game:
-            <a href="https://www.meta.com/en-gb/experiences/baldi-tag/24520374087546333/" target="_blank" rel="noopener noreferrer">
-              Visit on Meta
-            </a>
-          </div>
+          <div class="game-status">Normal Game:</div>
         </div>
       </a>
+      <a href="https://www.meta.com/en-gb/experiences/baldi-tag/24520374087546333/" 
+         class="meta-link" target="_blank" rel="noopener noreferrer">
+        Visit on Meta
+      </a>
     </div>
+
   </div>
 
   <footer>
