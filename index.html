@@ -48,6 +48,26 @@
       margin: 0;
     }
 
+    /* ✨ Discord button */
+    .discord-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #5865F2;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #5865F2aa;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .discord-btn:hover {
+      background-color: #4752C4;
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px #5865F2;
+    }
+
     #searchBar {
       margin: 0 auto 35px;
       padding: 14px 18px;
@@ -140,20 +160,9 @@
       user-select: none;
     }
 
-    .status-circle.green {
-      background-color: #2ecc71;
-      box-shadow: 0 0 10px #2ecc71aa;
-    }
-
-    .status-circle.red {
-      background-color: #e74c3c;
-      box-shadow: 0 0 10px #e74c3caa;
-    }
-
-    .status-circle.yellow {
-      background-color: #f1c40f;
-      box-shadow: 0 0 10px #f1c40faa;
-    }
+    .status-circle.green { background-color: #2ecc71; box-shadow: 0 0 10px #2ecc71aa; }
+    .status-circle.red { background-color: #e74c3c; box-shadow: 0 0 10px #e74c3caa; }
+    .status-circle.yellow { background-color: #f1c40f; box-shadow: 0 0 10px #f1c40faa; }
 
     footer {
       background-color: rgba(0,0,0,0.5);
@@ -167,18 +176,17 @@
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      #searchBar {
-        width: 90%;
-      }
+      h1 { font-size: 2.2rem; }
+      #searchBar { width: 90%; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Syzo's & Rants Modded Stuff</h1>
+    <a href="https://discord.gg/xY729SP4gA" target="_blank" rel="noopener noreferrer" class="discord-btn">
+      💬 Join our Discord
+    </a>
   </header>
 
   <input type="text" id="searchBar" placeholder="Search for a game..." onkeyup="searchGames()" />
