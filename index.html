@@ -119,12 +119,26 @@
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background-color: #2ecc71;
       position: absolute;
       top: 16px;
       right: 16px;
-      box-shadow: 0 0 10px #2ecc71aa;
       user-select: none;
+    }
+
+    /* ✅ Status colors */
+    .status-circle.green {
+      background-color: #2ecc71;
+      box-shadow: 0 0 10px #2ecc71aa;
+    }
+
+    .status-circle.red {
+      background-color: #e74c3c;
+      box-shadow: 0 0 10px #e74c3caa;
+    }
+
+    .status-circle.yellow {
+      background-color: #f1c40f;
+      box-shadow: 0 0 10px #f1c40faa;
     }
 
     footer {
@@ -156,55 +170,55 @@
   <input type="text" id="searchBar" placeholder="Search for a game..." onkeyup="searchGames()" />
 
   <div class="game-container" id="gameContainer">
-    <!-- Card 1 -->
+    <!-- Card 1 (Green) -->
     <div class="platform">
       <a href="https://gofile.io/d/4oYPG8" class="game-link" target="_blank" rel="noopener noreferrer">
         <div class="game-card">
-          <div class="status-circle"></div>
+          <div class="status-circle green"></div>
           <div class="game-title">Project Coco APK by Syzo</div>
           <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/project-coco/23955007477483572/</div>
         </div>
       </a>
     </div>
 
-    <!-- Card 2 -->
+    <!-- Card 2 (Green) -->
     <div class="platform">
       <a href="https://gofile.io/d/cmi7O0" class="game-link" target="_blank" rel="noopener noreferrer">
         <div class="game-card">
-          <div class="status-circle"></div>
+          <div class="status-circle green"></div>
           <div class="game-title">Fearing Gorilla APK by Rants</div>
           <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/fearing-gorilla/9917235984964672/</div>
         </div>
       </a>
     </div>
 
-    <!-- Card 3 -->
+    <!-- Card 3 (Red) -->
     <div class="platform">
       <a href="https://gofile.io/d/VIgBOl" class="game-link" target="_blank" rel="noopener noreferrer">
         <div class="game-card">
-          <div class="status-circle"></div>
+          <div class="status-circle red"></div>
           <div class="game-title">Project Magic APK by Syzo</div>
           <div class="game-status">Normal Game: Not Needed</div>
         </div>
       </a>
     </div>
 
-    <!-- Card 4 -->
+    <!-- Card 4 (Green) -->
     <div class="platform">
       <a href="https://gofile.io/d/VRSVfv" class="game-link" target="_blank" rel="noopener noreferrer">
         <div class="game-card">
-          <div class="status-circle"></div>
+          <div class="status-circle green"></div>
           <div class="game-title">Lethal Fear APK by Syzo</div>
           <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/lethal-fear/9994841147195949/</div>
         </div>
       </a>
     </div>
 
-    <!-- Card 5 -->
+    <!-- Card 5 (Green) -->
     <div class="platform">
       <a href="https://gofile.io/d/zJVXuy" class="game-link" target="_blank" rel="noopener noreferrer">
         <div class="game-card">
-          <div class="status-circle"></div>
+          <div class="status-circle green"></div>
           <div class="game-title">Tagging Gorillas 2 by SillyGoose</div>
           <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/tagging-gorillas-2/9615763978508086/</div>
         </div>
