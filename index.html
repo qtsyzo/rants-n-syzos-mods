@@ -76,12 +76,17 @@
       box-shadow: 5px 5px 25px #505070, -5px -5px 25px #7a7ab0;
     }
 
+    .game-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
     .game-card {
       background: #1c1c29;
       padding: 22px 24px;
       border-radius: 12px;
       position: relative;
-      cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -153,47 +158,57 @@
   <div class="game-container" id="gameContainer">
     <!-- Card 1 -->
     <div class="platform">
-      <div class="game-card" onclick="window.location.href='https://gofile.io/d/4oYPG8'">
-        <div class="status-circle" style="background-color: #2ecc71;"></div>
-        <div class="game-title">Project Coco APK by Syzo</div>
-        <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/project-coco/23955007477483572/</div>
-      </div>
+      <a href="https://gofile.io/d/4oYPG8" class="game-link" target="_blank" rel="noopener noreferrer">
+        <div class="game-card">
+          <div class="status-circle"></div>
+          <div class="game-title">Project Coco APK by Syzo</div>
+          <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/project-coco/23955007477483572/</div>
+        </div>
+      </a>
     </div>
 
     <!-- Card 2 -->
     <div class="platform">
-      <div class="game-card" onclick="window.location.href='https://gofile.io/d/cmi7O0'">
-        <div class="status-circle" style="background-color: #2ecc71;"></div>
-        <div class="game-title">Fearing Gorilla APK by Rants</div>
-        <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/fearing-gorilla/9917235984964672/</div>
-      </div>
+      <a href="https://gofile.io/d/cmi7O0" class="game-link" target="_blank" rel="noopener noreferrer">
+        <div class="game-card">
+          <div class="status-circle"></div>
+          <div class="game-title">Fearing Gorilla APK by Rants</div>
+          <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/fearing-gorilla/9917235984964672/</div>
+        </div>
+      </a>
     </div>
 
     <!-- Card 3 -->
     <div class="platform">
-      <div class="game-card" onclick="window.location.href='https://gofile.io/d/VIgBOl'">
-        <div class="status-circle" style="background-color: #2ecc71;"></div>
-        <div class="game-title">Project Magic APK by Syzo</div>
-        <div class="game-status">Normal Game: Not Needed</div>
-      </div>
+      <a href="https://gofile.io/d/VIgBOl" class="game-link" target="_blank" rel="noopener noreferrer">
+        <div class="game-card">
+          <div class="status-circle"></div>
+          <div class="game-title">Project Magic APK by Syzo</div>
+          <div class="game-status">Normal Game: Not Needed</div>
+        </div>
+      </a>
     </div>
 
     <!-- Card 4 -->
     <div class="platform">
-      <div class="game-card" onclick="window.location.href='https://gofile.io/d/VRSVfv'">
-        <div class="status-circle" style="background-color: #2ecc71;"></div>
-        <div class="game-title">Lethal Fear APK by Syzo</div>
-        <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/lethal-fear/9994841147195949/</div>
-      </div>
+      <a href="https://gofile.io/d/VRSVfv" class="game-link" target="_blank" rel="noopener noreferrer">
+        <div class="game-card">
+          <div class="status-circle"></div>
+          <div class="game-title">Lethal Fear APK by Syzo</div>
+          <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/lethal-fear/9994841147195949/</div>
+        </div>
+      </a>
     </div>
 
     <!-- Card 5 -->
     <div class="platform">
-      <div class="game-card" onclick="window.location.href='https://gofile.io/d/zJVXuy'">
-        <div class="status-circle" style="background-color: #2ecc71;"></div>
-        <div class="game-title">Tagging Gorillas 2 by SillyGoose</div>
-        <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/tagging-gorillas-2/9615763978508086/</div>
-      </div>
+      <a href="https://gofile.io/d/zJVXuy" class="game-link" target="_blank" rel="noopener noreferrer">
+        <div class="game-card">
+          <div class="status-circle"></div>
+          <div class="game-title">Tagging Gorillas 2 by SillyGoose</div>
+          <div class="game-status">Normal Game: https://www.meta.com/en-gb/experiences/tagging-gorillas-2/9615763978508086/</div>
+        </div>
+      </a>
     </div>
   </div>
 
@@ -204,11 +219,11 @@
   <script>
     function searchGames() {
       const input = document.getElementById('searchBar').value.toLowerCase();
-      const cards = document.querySelectorAll('.game-card');
+      const cards = document.querySelectorAll('.platform');
 
-      cards.forEach(card => {
-        const title = card.querySelector('.game-title').textContent.toLowerCase();
-        card.parentElement.style.display = title.includes(input) ? '' : 'none';
+      cards.forEach(platform => {
+        const title = platform.querySelector('.game-title').textContent.toLowerCase();
+        platform.style.display = title.includes(input) ? '' : 'none';
       });
     }
   </script>
