@@ -80,7 +80,7 @@
       </div>`;
     document.body.appendChild(modal);
 
-    // 🎨 Add styling for the exclamation mark
+    // 🎨 Style for the alert mark
     const style = document.createElement('style');
     style.textContent = `
       .fog-portal {
@@ -127,14 +127,14 @@
     }, 1000);
   });
 
-  // 🧩 Updated attachInterceptors — includes file name & skips _blank links
+  // 🧩 AttachInterceptors — now only intercepts .game-link WITHOUT target="_blank"
   function attachInterceptors(scope){
     const links = (scope || document).querySelectorAll('a.game-link');
     links.forEach(a=>{
       if(a.dataset.hook === '1') return;
       a.dataset.hook = '1';
       a.addEventListener('click', function(ev){
-        // ✅ Skip links meant to open in new tabs
+        // ✅ Skip external links that should open in new tabs
         if (this.target === '_blank') return;
 
         if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
