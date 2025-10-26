@@ -1,9 +1,10 @@
+// Shared Halloween JS — confirmation modal, audio control, spooky flair
 (() => {
   const STORAGE_KEY = 'syzohalloween_sound';
   const AMBIENT_SRC = 'assets/coast-162.mp3';
   const WHOOSH_SRC = 'assets/whoosh.mp3';
 
-  // --- Audio setup ---
+  // 🎵 Ambient + Whoosh audio setup
   let ambient = document.getElementById('ambientAudioShared');
   if (!ambient) {
     ambient = document.createElement('audio');
@@ -21,11 +22,10 @@
     document.body.appendChild(whoosh);
   }
 
-  // --- Sound button ---
+  // 🔊 Sound toggle button
   if (!document.querySelector('.sound-btn')) {
     const btn = document.createElement('button');
     btn.className = 'sound-btn';
-    btn.textContent = '🔊';
     document.body.appendChild(btn);
   }
   const soundBtn = document.querySelector('.sound-btn');
@@ -42,13 +42,14 @@
     if (on) ambient.play().catch(() => {});
     else ambient.pause();
   }
+
   soundBtn.addEventListener('click', () => setAudio(!audioOn));
   document.addEventListener('DOMContentLoaded', () => {
     updateBtn(audioOn);
     if (audioOn) ambient.play().catch(() => {});
   });
 
-  // --- Modal setup ---
+  // ⚠️ Confirmation Modal
   let modal = document.getElementById('modalOverlay');
   if (!modal) {
     modal = document.createElement('div');
@@ -144,28 +145,22 @@
     if (!pendingHref) return (modal.style.display = 'none');
     whoosh.play().catch(() => {});
     setTimeout(() => {
-      window.location.href = pendingHref;
+      window.open(pendingHref, '_blank', 'noopener,noreferrer'); // 💥 open in new tab
       modal.style.display = 'none';
       pendingHref = null;
-    }, 1000);
+    }, 800);
   });
 
-  // --- Interceptors ---
+  // 🎃 Interceptor logic (works for all links now)
   function attachInterceptors(scope) {
     const links = (scope || document).querySelectorAll('a.game-link');
     links.forEach((a) => {
       if (a.dataset.hook === '1') return;
       a.dataset.hook = '1';
       a.addEventListener('click', function (ev) {
-        // Only intercept left clicks (not ctrl/shift clicks)
         if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
-
-        // Only intercept same-tab links (no target="_blank")
-        if (this.target && this.target === '_blank') return;
-
         ev.preventDefault();
 
-        // Set file name for display
         const title = this.querySelector('.game-title')?.textContent?.trim() || 'Unknown File';
         fileNameEl.textContent = title;
 
