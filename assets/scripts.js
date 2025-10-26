@@ -97,12 +97,16 @@
     }, 1000);
   });
 
+  // 🧩 Updated attachInterceptors — skips links with target="_blank"
   function attachInterceptors(scope){
     const links = (scope || document).querySelectorAll('a.game-link');
     links.forEach(a=>{
       if(a.dataset.hook === '1') return;
       a.dataset.hook = '1';
       a.addEventListener('click', function(ev){
+        // ✅ Skip external links that should open in a new tab
+        if (this.target === '_blank') return;
+
         if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
         ev.preventDefault();
         pendingHref = this.href;
