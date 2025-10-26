@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,21 +24,43 @@
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
+  <!-- 🌫️ Background fog -->
   <div class="fog" aria-hidden="true"></div>
-  <div class="pumpkins" aria-hidden="true">
-    <div class="pumpkin">🎃</div><div class="pumpkin">🎃</div><div class="pumpkin">🎃</div>
+
+  <!-- 🦇 Animated bats -->
+  <div class="bat fly1" aria-hidden="true">
+    <svg viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 6c4-5 12-6 20 0-2-1-6-2-10 0 6 1 8 6 8 10-6-3-10-2-14 2-4-4-8-5-14-2 0-4 2-9 10-10-4-2-8-1-10 0z" fill="#0f0b10"/>
+      <g class="wing"><path d="M4 18c8-6 14-4 22 0-6-2-12-1-22 0z" fill="#0f0b10"/></g>
+      <g class="wing slow" transform="translate(40,0)">
+        <path d="M60 18c-8-6-14-4-22 0 6-2 12-1 22 0z" fill="#0f0b10"/>
+      </g>
+    </svg>
   </div>
+  <div class="bat fly2" aria-hidden="true"><!-- same structure as above --></div>
+  <div class="bat fly3" aria-hidden="true"><!-- same structure as above --></div>
+  <div class="bat fly4" aria-hidden="true"><!-- same structure as above --></div>
+
+  <!-- 🎃 Pumpkins -->
+  <div class="pumpkins" aria-hidden="true">
+    <div class="pumpkin">🎃</div>
+    <div class="pumpkin">🎃</div>
+    <div class="pumpkin">🎃</div>
+  </div>
+
+  <!-- 🕸️ Header -->
   <header class="header">
     <h1 class="brand"><span class="icon">🎃</span> <span class="text">Syzo's Modded Stuff</span></h1>
     <p class="sub">Halloween Edition — Join the Discord!</p>
     <div class="controls">
-      <a class="btn" href="https://discord.gg/xY729SP4gA" target="_blank" rel="noopener noreferrer">💬 Join our Discord</a>
+      <a class="btn" href="https://discord.gg/xY729SP4gA" target="_blank">💬 Join our Discord</a>
       <a class="btn" href="apks.html">📱 APKs</a>
       <a class="btn" href="metadatas.html">🧠 Metadatas</a>
       <a class="btn" href="obbs.html">📦 OBBs</a>
     </div>
   </header>
 
+  <!-- 🧠 Main content -->
   <main class="container">
     <section>
       <h2>Welcome</h2>
@@ -47,8 +68,10 @@
     </section>
   </main>
 
+  <!-- ⚰️ Footer -->
   <footer class="footer">© 2025 Syzo | Halloween Theme</footer>
 
+  <!-- 🔊 Audio + Button -->
   <div class="sound-btn" id="soundToggle">🔊</div>
   <audio id="background-audio" src="assets/coast-162.mp3" loop></audio>
 
