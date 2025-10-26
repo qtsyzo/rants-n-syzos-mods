@@ -185,3 +185,14 @@ body{
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 16px rgba(255,122,24,0.3);
 }
+/* Keep links the same color whether visited or not */
+a,
+a:visited {
+  color: #66aaff; /* your preferred blue */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #88caff; /* slightly lighter on hover */
+  text-decoration: underline;
+}
