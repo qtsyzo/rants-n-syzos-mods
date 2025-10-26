@@ -1,85 +1,116 @@
-// --- Background Audio Toggle ---
-const audio = document.getElementById('background-audio');
-const toggleBtn = document.getElementById('soundToggle');
-let isPlaying = false;
+// Shared Halloween JS: ambient audio, fog confirmation modal, download interceptors, and sound toggle.
+(() => {
+  const STORAGE_KEY = 'syzohalloween_sound';
+  const AMBIENT_SRC = 'assets/coast-162.mp3'; // background loop file
+  const WHOOSH_SRC  = 'assets/whoosh.mp3';    // optional whoosh for modal
 
-// Restore sound state
-if (localStorage.getItem('sound') === 'on') {
-  audio.play();
-  isPlaying = true;
-  toggleBtn.textContent = '🔊';
-}
-
-toggleBtn.addEventListener('click', () => {
-  if (isPlaying) {
-    audio.pause();
-    toggleBtn.textContent = '🔇';
-    localStorage.setItem('sound', 'off');
-  } else {
-    audio.play();
-    toggleBtn.textContent = '🔊';
-    localStorage.setItem('sound', 'on');
+  // Ambient audio element
+  let ambient = document.getElementById('ambientAudioShared');
+  if(!ambient){
+    ambient = document.createElement('audio');
+    ambient.id = 'ambientAudioShared';
+    ambient.loop = true;
+    ambient.preload = 'auto';
+    ambient.src = AMBIENT_SRC;
+    document.body.appendChild(ambient);
   }
-  isPlaying = !isPlaying;
-});
 
-// --- Fog Confirmation Modal ---
-document.querySelectorAll('.game-link').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const url = link.getAttribute('href');
-    showFogModal(url);
+  // Optional whoosh
+  let whoosh = document.getElementById('whooshAudioShared');
+  if(!whoosh){
+    whoosh = document.createElement('audio');
+    whoosh.id = 'whooshAudioShared';
+    whoosh.preload = 'auto';
+    whoosh.src = WHOOSH_SRC;
+    document.body.appendChild(whoosh);
+  }
+
+  // Bottom-right sound button
+  if(!document.querySelector('.sound-btn')){
+    const btn = document.createElement('button');
+    btn.className = 'sound-btn';
+    btn.setAttribute('aria-pressed','false');
+    document.body.appendChild(btn);
+  }
+  const soundBtn = document.querySelector('.sound-btn');
+
+  function updateBtn(on){
+    soundBtn.textContent = on ? '🔊' : '🔇';
+    soundBtn.setAttribute('aria-pressed', String(on));
+  }
+
+  let audioOn = localStorage.getItem(STORAGE_KEY) === '1';
+  function setAudio(on){
+    audioOn = !!on;
+    localStorage.setItem(STORAGE_KEY, audioOn ? '1' : '0');
+    updateBtn(audioOn);
+    if(audioOn){
+      ambient.play().catch(()=>{});
+    } else {
+      ambient.pause();
+      try{ ambient.currentTime = 0; }catch(e){}
+    }
+  }
+  soundBtn.addEventListener('click', ()=> setAudio(!audioOn));
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    updateBtn(audioOn);
+    if(audioOn) ambient.play().catch(()=>{});
   });
-});
 
-function showFogModal(targetUrl) {
-  // Create overlay
-  const overlay = document.createElement('div');
-  overlay.id = 'modalOverlay';
-  overlay.style.cssText = `
-    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-    background:rgba(32,32,32,0.55);backdrop-filter:blur(3px);z-index:1200;
-    animation:fadeIn 0.3s ease-out forwards;
-  `;
+  // Build confirmation modal once
+  let modal = document.getElementById('modalOverlay');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'modalOverlay';
+    modal.innerHTML = `
+      <div class="confirm-wrap" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+        <div class="fog-portal" aria-hidden="true"></div>
+        <div id="confirmTitle" class="confirm-title">Are you sure this is the correct file?</div>
+        <div class="confirm-text">Click <strong>Yes</strong> to confirm and start the download, or <strong>No</strong> to cancel.</div>
+        <div class="modal-actions">
+          <button class="modal-btn yes">Yes</button>
+          <button class="modal-btn no">No</button>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+  }
 
-  // Modal window
-  const modal = document.createElement('div');
-  modal.className = 'confirm-wrap';
-  modal.innerHTML = `
-    <div class="fog-portal"></div>
-    <div class="confirm-title">Are you sure this is the correct file?</div>
-    <div class="modal-actions">
-      <button class="modal-btn yes">Yes</button>
-      <button class="modal-btn no">No</button>
-    </div>
-  `;
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
+  const yesBtn = modal.querySelector('.modal-btn.yes');
+  const noBtn  = modal.querySelector('.modal-btn.no');
+  let pendingHref = null;
 
-  // Sound effect (optional whoosh)
-  const whoosh = new Audio('assets/whoosh.mp3');
-  whoosh.volume = 0.5;
-  whoosh.play().catch(()=>{});
+  noBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    modal.style.display = 'none';
+    pendingHref = null;
+  });
 
-  // Button events
-  modal.querySelector('.yes').addEventListener('click', () => {
-    overlay.style.animation = 'fadeOut 1s ease-in forwards';
-    setTimeout(() => {
-      window.open(targetUrl, '_blank');
-      overlay.remove();
+  yesBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    if(!pendingHref){ modal.style.display = 'none'; return; }
+    whoosh && whoosh.play && whoosh.play().catch(()=>{});
+    setTimeout(()=>{
+      window.location.href = pendingHref;
+      pendingHref = null;
+      modal.style.display = 'none';
     }, 1000);
   });
 
-  modal.querySelector('.no').addEventListener('click', () => {
-    overlay.style.animation = 'fadeOut 1s ease-in forwards';
-    setTimeout(() => overlay.remove(), 1000);
-  });
-}
+  function attachInterceptors(scope){
+    const links = (scope || document).querySelectorAll('a.game-link');
+    links.forEach(a=>{
+      if(a.dataset.hook === '1') return;
+      a.dataset.hook = '1';
+      a.addEventListener('click', function(ev){
+        if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+        ev.preventDefault();
+        pendingHref = this.href;
+        modal.style.display = 'flex';
+      });
+    });
+  }
 
-// --- Keyframes for fog fade ---
-const style = document.createElement('style');
-style.textContent = `
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-@keyframes fadeOut { from {opacity:1;} to {opacity:0;} }
-`;
-document.head.appendChild(style);
+  document.addEventListener('DOMContentLoaded', ()=> attachInterceptors(document));
+  window.SyzoHalloween = { attachInterceptors };
+})();
