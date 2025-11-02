@@ -69,16 +69,43 @@
     else audio.pause();
   });
 })();
-// ❄️ Confirm before downloading any file
+// ❄️ Custom "Are you sure?" popup for file downloads
 document.addEventListener("DOMContentLoaded", () => {
-  const downloadLinks = document.querySelectorAll('a[href$=".apk"], a[href$=".obb"], a[href$=".dat"], a[href$=".zip"], a[href*="metadata"]');
+  // Create popup container
+  const popup = document.createElement("div");
+  popup.className = "confirm-popup hidden";
+  popup.innerHTML = `
+    <div class="confirm-box">
+      <h3>❄️ Confirm Download</h3>
+      <p>Are you sure this is the right file?</p>
+      <div class="confirm-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">Cancel</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(popup);
 
+  let pendingLink = null;
+
+  // Attach popup to file links
+  const downloadLinks = document.querySelectorAll('a[href$=".apk"], a[href$=".obb"], a[href$=".dat"], a[href$=".zip"], a[href*="metadata"]');
   downloadLinks.forEach(link => {
-    link.addEventListener("click", event => {
-      const confirmDownload = confirm("Are you sure this is the right file?");
-      if (!confirmDownload) {
-        event.preventDefault();
-      }
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      pendingLink = link;
+      popup.classList.remove("hidden");
     });
+  });
+
+  // Handle buttons
+  document.getElementById("confirm-yes").addEventListener("click", () => {
+    popup.classList.add("hidden");
+    if (pendingLink) window.open(pendingLink.href, "_blank");
+  });
+
+  document.getElementById("confirm-no").addEventListener("click", () => {
+    popup.classList.add("hidden");
+    pendingLink = null;
   });
 });
