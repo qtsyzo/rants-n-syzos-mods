@@ -9,23 +9,25 @@
   <link rel="icon" type="image/png" href="syzossnowypfp.png" />
 </head>
 <body>
-  <div class="snow"></div>
+  <canvas id="snow-canvas"></canvas>
 
   <header class="header">
-    <h1 class="brand">📦 OBBs</h1>
+    <h1 class="brand"><span class="icon">📦</span> OBBs</h1>
     <div class="controls">
-      <a class="btn primary" href="https://discord.gg/xY729SP4gA" target="_blank">🎄 Join Syzo's Discord</a>
-      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3" target="_blank">🎁 Join Rants' Discord</a>
+      <a class="btn primary" href="https://discord.gg/xY729SP4gA" target="_blank">🎅 Join Syzo's Discord!</a>
+      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3" target="_blank">🎄 Join Rants' Discord!</a>
     </div>
     <div class="controls">
       <a class="btn" href="index.html">🏠 Home</a>
       <a class="btn" href="apks.html">📱 APKs</a>
       <a class="btn" href="metadatas.html">🧠 Metadatas</a>
     </div>
+    <input id="searchBar" class="search" type="text" placeholder="Search for a game..." />
   </header>
 
   <main class="container">
     <div class="game-container" id="gameContainer">
+
       <div class="platform">
         <a class="game-link" href="https://gofile.io/d/iHFdVr" target="_blank">
           <div class="game-card">
@@ -33,7 +35,7 @@
             <div class="game-title">OG Scary Baboon</div>
           </div>
         </a>
-        <div class="game-status">Normal Game:
+        <div class="game-status">Normal Game: 
           <a href="https://www.meta.com/en-gb/experiences/og-scary-baboon/31332020169777810/" target="_blank">Visit on Meta</a>
         </div>
       </div>
@@ -45,16 +47,26 @@
             <div class="game-title">Scary Baboon</div>
           </div>
         </a>
-        <div class="game-status">Normal Game:
+        <div class="game-status">Normal Game: 
           <a href="https://www.meta.com/en-gb/experiences/scary-baboon/6458628580871969/" target="_blank">Visit on Meta</a>
         </div>
       </div>
+
     </div>
   </main>
 
-  <footer class="footer">© 2025 Syzo & Rants | Snowy Edition ❄️</footer>
+  <footer class="footer">© 2025 Syzo & Rants | Christmas Edition 🎅</footer>
   <div class="sound-btn" id="soundToggle">🔊</div>
   <audio id="background-audio" src="assets/coast-162.mp3" loop></audio>
   <script src="assets/scripts.js"></script>
+  <script>
+    document.getElementById('searchBar').addEventListener('keyup',function(){
+      const q=this.value.toLowerCase();
+      document.querySelectorAll('.platform').forEach(p=>{
+        const t=(p.querySelector('.game-title')?.textContent||'').toLowerCase();
+        p.style.display=t.includes(q)?'':'none';
+      });
+    });
+  </script>
 </body>
 </html>
