@@ -8,11 +8,9 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-
   window.addEventListener('resize', resize);
   resize();
 
-  // Create snowflakes
   for (let i = 0; i < 120; i++) {
     snowflakes.push({
       x: Math.random() * canvas.width,
@@ -23,7 +21,6 @@
   }
 
   let angle = 0;
-
   function drawSnow() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
@@ -39,8 +36,8 @@
   function moveSnow() {
     angle += 0.01;
     for (let f of snowflakes) {
-      f.y += Math.pow(f.d, 2) + 1; // fall speed
-      f.x += Math.sin(angle) * 0.5; // slight side drift
+      f.y += Math.pow(f.d, 2) + 1;
+      f.x += Math.sin(angle) * 0.5;
       if (f.y > canvas.height) {
         f.y = 0;
         f.x = Math.random() * canvas.width;
@@ -48,7 +45,6 @@
     }
   }
 
-  // Animation loop
   (function animate() {
     drawSnow();
     requestAnimationFrame(animate);
@@ -59,7 +55,7 @@
   const audio = document.getElementById('background-audio');
   let on = false;
 
-  // 👇 Default icon = muted
+  // 👇 set correct default icon (muted)
   btn.textContent = '🔇';
 
   btn.addEventListener('click', () => {
@@ -69,9 +65,9 @@
     else audio.pause();
   });
 })();
+
 // ❄️ Custom "Are you sure?" popup for real downloads (not page links)
 document.addEventListener("DOMContentLoaded", () => {
-  // Create popup container
   const popup = document.createElement("div");
   popup.className = "confirm-popup hidden";
   popup.innerHTML = `
@@ -88,15 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let pendingLink = null;
 
-  // Only target external file links (like gofile, mediafire, etc.)
-  const downloadLinks = document.querySelectorAll('a[href*="gofile.io"], a[href*="mediafire.com"], a[href*="mega.nz"], a[href$=".apk"], a[href$=".obb"], a[href$=".zip"], a[href$=".dat"]');
+  const downloadLinks = document.querySelectorAll(
+    'a[href*="gofile.io"], a[href*="mediafire.com"], a[href*="mega.nz"], a[href$=".apk"], a[href$=".obb"], a[href$=".zip"], a[href$=".dat"]'
+  );
 
   downloadLinks.forEach(link => {
     link.addEventListener("click", e => {
-      // Skip internal links (like index.html, apks.html, etc.)
       const href = link.getAttribute("href");
       if (
-        href.includes "/" ||
+        href === "/" ||
         href.includes("/apks") ||
         href.includes("/metadatas") ||
         href.includes("/obbs")
@@ -108,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Handle Yes / No
   document.getElementById("confirm-yes").addEventListener("click", () => {
     popup.classList.add("hidden");
     if (pendingLink) window.open(pendingLink.href, "_blank");
