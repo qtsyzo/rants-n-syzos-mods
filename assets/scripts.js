@@ -8,9 +8,11 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
+
   window.addEventListener('resize', resize);
   resize();
 
+  // Create snowflakes
   for (let i = 0; i < 120; i++) {
     snowflakes.push({
       x: Math.random() * canvas.width,
@@ -21,6 +23,7 @@
   }
 
   let angle = 0;
+
   function drawSnow() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
@@ -36,29 +39,33 @@
   function moveSnow() {
     angle += 0.01;
     for (let f of snowflakes) {
-      f.y += Math.pow(f.d, 2) + 1;
-      f.x += Math.sin(angle) * 0.5;
+      f.y += Math.pow(f.d, 2) + 1; // fall speed
+      f.x += Math.sin(angle) * 0.5; // slight side drift
       if (f.y > canvas.height) {
-        f.y = 0; f.x = Math.random() * canvas.width;
+        f.y = 0;
+        f.x = Math.random() * canvas.width;
       }
     }
   }
 
+  // Animation loop
   (function animate() {
     drawSnow();
     requestAnimationFrame(animate);
   })();
 
-  // 🔊 Sound Toggleconst btn = document.getElementById('soundToggle');
-const audio = document.getElementById('background-audio');
-let on = false;
+  // 🔊 Sound Toggle
+  const btn = document.getElementById('soundToggle');
+  const audio = document.getElementById('background-audio');
+  let on = false;
 
-// 👇 set the correct default icon
-btn.textContent = '🔇';
+  // 👇 Default icon = muted
+  btn.textContent = '🔇';
 
-btn.addEventListener('click', () => {
-  on = !on;
-  btn.textContent = on ? '🔊' : '🔇';
-  if (on) audio.play(); else audio.pause();
+  btn.addEventListener('click', () => {
+    on = !on;
+    btn.textContent = on ? '🔊' : '🔇';
+    if (on) audio.play();
+    else audio.pause();
   });
 })();
