@@ -49,13 +49,16 @@
     requestAnimationFrame(animate);
   })();
 
-  // 🔊 Sound Toggle
-  const btn = document.getElementById('soundToggle');
-  const audio = document.getElementById('background-audio');
-  let on = false;
-  btn.addEventListener('click', () => {
-    on = !on;
-    btn.textContent = on ? '🔊' : '🔇';
-    if (on) audio.play(); else audio.pause();
+  // 🔊 Sound Toggleconst btn = document.getElementById('soundToggle');
+const audio = document.getElementById('background-audio');
+let on = false;
+
+// 👇 set the correct default icon
+btn.textContent = '🔇';
+
+btn.addEventListener('click', () => {
+  on = !on;
+  btn.textContent = on ? '🔊' : '🔇';
+  if (on) audio.play(); else audio.pause();
   });
 })();
