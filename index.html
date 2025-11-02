@@ -3,54 +3,63 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Syzo's Snowy Hub 🎄</title>
+  <title>Syzo's Snowy Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" type="image/png" href="syzossnowypfp.png" />
 
-  <meta property="og:title" content="Syzo's Snowy Hub 🎅" />
-  <meta property="og:description" content="A festive winter hub for VR Mods — by Syzo & Rants!" />
-  <meta property="og:url" content="https://syzomods.com/" />
+  <!-- ❄️ Social Embed -->
+  <meta property="og:title" content="Syzo's Snowy Hub" />
+  <meta property="og:description" content="Modded VR Games by Syzo & Rants — Winter Edition ❄️" />
+  <meta property="og:url" content="https://qtsyzo.github.io/syzos-and-rants-mods/" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="https://qtsyzo.github.io/syzos-and-rants-mods/syzossnowypfp.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Syzo's Snowy Hub" />
+  <meta name="twitter:description" content="Modded VR Games by Syzo & Rants — Winter Edition ❄️" />
+  <meta name="twitter:image" content="https://qtsyzo.github.io/syzos-and-rants-mods/syzossnowypfp.png" />
 </head>
 <body>
-  <!-- ❄️ Snowflakes -->
-  <div class="snowflake" style="--x:10%;">❄️</div>
-  <div class="snowflake" style="--x:25%;">❄️</div>
-  <div class="snowflake" style="--x:45%;">❄️</div>
-  <div class="snowflake" style="--x:70%;">❄️</div>
-  <div class="snowflake" style="--x:90%;">❄️</div>
+  <!-- ❄️ Snowfall -->
+  <div class="snow"></div>
 
   <header class="header">
-    <h1 class="brand">🎄 Syzo's Snowy Hub 🎄</h1>
-    <p class="sub">Cozy Winter Mods & Files — Join the Discord!</p>
+    <h1 class="brand">Syzo's Snowy Hub</h1>
+    <p class="sub">Modded VR Games by Syzo & Rants — all in one winter wonderland 🎅</p>
 
     <div class="controls">
-      <a class="btn primary" href="https://discord.gg/xY729SP4gA" target="_blank">🎁 Syzo's Discord</a>
-      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3" target="_blank">🎅 Rants' Discord</a>
+      <a class="btn primary" href="https://discord.gg/xY729SP4gA" target="_blank">🎄 Join Syzo's Discord</a>
+      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3" target="_blank">🎁 Join Rants' Discord</a>
     </div>
 
-    <div class="controls nav-links">
-      <a class="btn nav" href="apks.html">📱 APKs</a>
-      <a class="btn nav" href="metadatas.html">🧠 Metadatas</a>
-      <a class="btn nav" href="obbs.html">📦 OBBs</a>
+    <div class="controls">
+      <a class="btn" href="apks.html">📱 APKs</a>
+      <a class="btn" href="metadatas.html">🧠 Metadatas</a>
+      <a class="btn" href="obbs.html">📦 OBBs</a>
     </div>
   </header>
 
   <main class="container">
-    <div class="intro-card">
-      <h2>Welcome!</h2>
-      <p>
-        Welcome to <strong>Syzo’s Snowy Hub</strong> — your cozy home for VR modding!  
-        Explore APKs, Metadatas, and OBBs, all wrapped up in a festive red & green Christmas theme.  
-        🎄 Check our Discords for updates — stay frosty!
-      </p>
+    <div class="sections">
+      <a class="section-card" href="apks.html">
+        <div class="emoji">📱</div>
+        <h3>APKs</h3>
+      </a>
+      <a class="section-card" href="metadatas.html">
+        <div class="emoji">🧠</div>
+        <h3>Metadatas</h3>
+      </a>
+      <a class="section-card" href="obbs.html">
+        <div class="emoji">📦</div>
+        <h3>OBBs</h3>
+      </a>
     </div>
   </main>
 
-  <footer class="footer">© 2025 Syzo & Rants | Christmas Edition 🎅🎄</footer>
+  <footer class="footer">© 2025 Syzo & Rants | Snowy Edition ❄️</footer>
 
-  <!-- 🔊 Background Audio -->
+  <!-- 🔊 Background Music -->
   <div class="sound-btn" id="soundToggle">🔊</div>
   <audio id="background-audio" src="assets/coast-162.mp3" loop></audio>
 
