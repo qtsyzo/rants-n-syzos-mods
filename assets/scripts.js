@@ -96,10 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // Skip internal links (like index.html, apks.html, etc.)
       const href = link.getAttribute("href");
       if (
-        href.includes("index.html") ||
-        href.includes("apks.html") ||
-        href.includes("metadatas.html") ||
-        href.includes("obbs.html")
+        href.includes "/" ||
+        href.includes("/apks") ||
+        href.includes("/metadatas") ||
+        href.includes("/obbs")
       ) return;
 
       e.preventDefault();
