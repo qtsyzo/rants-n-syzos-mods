@@ -3,38 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Syzo's Snowy Hub — OBBs</title>
+  <title>OBBs — Syzo's Snowy Hub 🎄</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" type="image/png" href="syzossnowypfp.png" />
-
-  <meta property="og:title" content="Syzo's Snowy Hub — OBBs" />
-  <meta property="og:description" content="Frosty VR modding files — OBBs by Syzo & Rants!" />
-  <meta property="og:url" content="https://syzomods.com/obbs.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://qtsyzo.github.io/syzos-and-rants-mods/syzossnowypfp.png" />
 </head>
 <body>
-  <div class="snowflake" style="--x:10%;">❄️</div>
+  <!-- ❄️ Snow -->
   <div class="snowflake" style="--x:30%;">❄️</div>
-  <div class="snowflake" style="--x:50%;">❄️</div>
-  <div class="snowflake" style="--x:70%;">❄️</div>
-  <div class="snowflake" style="--x:90%;">❄️</div>
+  <div class="snowflake" style="--x:80%;">❄️</div>
 
   <header class="header">
-    <h1 class="brand"><span class="icon">📦</span> <span class="text">OBBs</span></h1>
+    <h1 class="brand">📦 OBBs</h1>
     <div class="controls">
-      <a class="btn primary" href="https://discord.gg/xY729SP4gA" target="_blank">🎁 Syzo's Discord</a>
-      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3" target="_blank">🎄 Rants' Discord</a>
+      <a class="btn primary" href="https://discord.gg/xY729SP4gA">🎁 Syzo's Discord</a>
+      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3">🎄 Rants' Discord</a>
     </div>
-
     <div class="controls">
       <a class="btn" href="index.html">🏠 Home</a>
       <a class="btn" href="apks.html">📱 APKs</a>
       <a class="btn" href="metadatas.html">🧠 Metadatas</a>
     </div>
-
-    <input id="searchBar" class="search" type="text" placeholder="🔍 Search for a game..." aria-label="Search games">
+    <input id="searchBar" class="search" type="text" placeholder="Search for a game...">
   </header>
 
   <main class="container">
@@ -68,20 +58,8 @@
   </main>
 
   <footer class="footer">© 2025 Syzo & Rants | Christmas Edition 🎅❄️</footer>
-
   <div class="sound-btn" id="soundToggle">🔊</div>
   <audio id="background-audio" src="assets/coast-162.mp3" loop></audio>
-
   <script src="assets/scripts.js"></script>
-  <script>
-    document.getElementById('searchBar').addEventListener('keyup', function(){
-      const input = this.value.toLowerCase();
-      document.querySelectorAll('.platform').forEach(p=>{
-        const title = (p.querySelector('.game-title')?.textContent || '').toLowerCase();
-        p.style.display = title.includes(input) ? '' : 'none';
-      });
-    });
-    document.addEventListener('DOMContentLoaded', ()=> window.SyzoSnow && window.SyzoSnow.attachInterceptors());
-  </script>
 </body>
 </html>
