@@ -139,6 +139,8 @@ body{
 .red{background:#e57373;color:#e57373;}
 .blue{background:#64b5f6;color:#64b5f6;}
 .purple{background:#ba68c8;color:#ba68c8;}
+.orange{background:#ff5f1f;color:#ff5f1f;}
+.yellow{background:#ffff00;color:#ffff00;}
 .game-card:hover .status-circle{opacity:1;transform:none;}
 
 .footer{text-align:center;padding:24px;color:#555;margin-top:20px;}
