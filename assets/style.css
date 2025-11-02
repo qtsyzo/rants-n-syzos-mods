@@ -143,6 +143,7 @@ body{
 .yellow{background:#ffff00;color:#ffff00;}
 .black{background:#000000;color:#000000;}
 .white{background:#ffffff;color:#ffffff;}
+.pink{background:#ffb6c1;color:#ffb6c1;}
 .game-card:hover .status-circle{opacity:1;transform:none;}
 
 .footer{text-align:center;padding:24px;color:#555;margin-top:20px;}
