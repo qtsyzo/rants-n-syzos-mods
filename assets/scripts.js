@@ -1,28 +1,3 @@
-// 🎅 Version badge control
-document.addEventListener("DOMContentLoaded", () => {
-  const versionBadge = document.getElementById("version-badge");
-  if (!versionBadge) return;
-
-  // current version
-  let version = "1.0.0";
-
-  // helper → bump patch (0.0.1)
-  function bumpVersion(v) {
-    const parts = v.split(".").map(Number);
-    parts[2]++;
-    return parts.join(".");
-  }
-
-  // get last version from localStorage
-  const stored = localStorage.getItem("syzohub_version");
-  if (stored) {
-    version = bumpVersion(stored);
-  }
-
-  // update display & store new version
-  versionBadge.textContent = "v" + version;
-  localStorage.setItem("syzohub_version", version);
-});
 // 🎄 Snow animation + sound control
 (() => {
   const canvas = document.getElementById('snow-canvas');
