@@ -69,7 +69,7 @@
     else audio.pause();
   });
 })();
-// ❄️ Custom "Are you sure?" popup for file downloads
+// ❄️ Custom "Are you sure?" popup for real downloads (not page links)
 document.addEventListener("DOMContentLoaded", () => {
   // Create popup container
   const popup = document.createElement("div");
@@ -88,17 +88,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let pendingLink = null;
 
-  // Attach popup to file links
-  const downloadLinks = document.querySelectorAll('a[href$=".apk"], a[href$=".obb"], a[href$=".dat"], a[href$=".zip"], a[href*="metadata"]');
+  // Only target external file links (like gofile, mediafire, etc.)
+  const downloadLinks = document.querySelectorAll('a[href*="gofile.io"], a[href*="mediafire.com"], a[href*="mega.nz"], a[href$=".apk"], a[href$=".obb"], a[href$=".zip"], a[href$=".dat"]');
+
   downloadLinks.forEach(link => {
     link.addEventListener("click", e => {
+      // Skip internal links (like index.html, apks.html, etc.)
+      const href = link.getAttribute("href");
+      if (
+        href.includes("index.html") ||
+        href.includes("apks.html") ||
+        href.includes("metadatas.html") ||
+        href.includes("obbs.html")
+      ) return;
+
       e.preventDefault();
       pendingLink = link;
       popup.classList.remove("hidden");
     });
   });
 
-  // Handle buttons
+  // Handle Yes / No
   document.getElementById("confirm-yes").addEventListener("click", () => {
     popup.classList.add("hidden");
     if (pendingLink) window.open(pendingLink.href, "_blank");
