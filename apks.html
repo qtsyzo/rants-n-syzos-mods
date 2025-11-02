@@ -3,56 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Syzo's Modding Hub</title>
+  <title>Syzo's Snowy Hub — APKs</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" type="image/png" href="syzossnowypfp.png" />
 
-  <!-- ✅ Social Embed (Open Graph) -->
-  <meta property="og:title" content="Syzo's & Rants' Modded Stuff" />
-  <meta property="og:description" content="Modded VR Games by Syzo & Rants — All in one website!" />
+  <!-- 🎄 Social Embed -->
+  <meta property="og:title" content="Syzo's Snowy Hub — APKs" />
+  <meta property="og:description" content="A frosty Christmas-themed VR Mod Hub — APKs, Metadatas, and OBBs!" />
   <meta property="og:url" content="https://qtsyzo.github.io/syzos-and-rants-mods/apks.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://qtsyzo.github.io/syzos-and-rants-mods/syzossnowypfp.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="200" />
-  <meta property="og:image:height" content="200" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Syzo's & Rants Modded Stuff" />
-  <meta name="twitter:description" content="Modded VR Games by Syzo & Rants — All in one website!" />
-  <meta name="twitter:image" content="https://qtsyzo.github.io/syzos-and-rants-mods/syzossnowypfp.png" />
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>APKs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <!-- 🌸 Petal animation -->
-  <div class="petal" style="--x:10%;"></div>
-  <div class="petal" style="--x:30%;"></div>
-  <div class="petal" style="--x:50%;"></div>
-  <div class="petal" style="--x:70%;"></div>
-  <div class="petal" style="--x:90%;"></div>
-
-  <!-- 🌷 Floating flowers -->
-  <div class="flowers" aria-hidden="true">
-    <div class="flower">🌷</div>
-    <div class="flower">🌸</div>
-    <div class="flower">🌼</div>
-  </div>
+  <!-- ❄️ Snow animation -->
+  <div class="snowflake" style="--x:10%;">❄️</div>
+  <div class="snowflake" style="--x:30%;">❄️</div>
+  <div class="snowflake" style="--x:50%;">❄️</div>
+  <div class="snowflake" style="--x:70%;">❄️</div>
+  <div class="snowflake" style="--x:90%;">❄️</div>
 
   <header class="header">
     <h1 class="brand"><span class="icon">📱</span> <span class="text">APKs</span></h1>
 
     <div class="controls">
-      <a class="btn primary" href="https://discord.gg/xY729SP4gA"
-         target="_blank" rel="noopener noreferrer">🌸 Join Syzo's Discord!</a>
-
-      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3"
-         target="_blank" rel="noopener noreferrer">🌷 Join Rants' Discord!</a>
+      <a class="btn primary" href="https://discord.gg/xY729SP4gA" target="_blank" rel="noopener noreferrer">🎁 Join Syzo's Discord</a>
+      <a class="btn primary" href="https://discord.gg/tBCwKfxAU3" target="_blank" rel="noopener noreferrer">🎄 Join Rants' Discord</a>
     </div>
 
     <div class="controls">
@@ -61,7 +37,7 @@
       <a class="btn" href="obbs.html">📦 OBBs</a>
     </div>
 
-    <input id="searchBar" class="search" type="text" placeholder="Search for a game..." aria-label="Search games">
+    <input id="searchBar" class="search" type="text" placeholder="🔍 Search for a game..." aria-label="Search games">
   </header>
 
   <main class="container">
@@ -250,7 +226,7 @@
     </div>
   </main>
 
-  <footer class="footer">© 2025 Syzo & Rants | Nowruz Edition 🌸</footer>
+  <footer class="footer">© 2025 Syzo & Rants | Christmas Edition 🎅❄️</footer>
 
   <!-- 🔊 Background Audio -->
   <div class="sound-btn" id="soundToggle">🔊</div>
@@ -258,7 +234,6 @@
 
   <script src="assets/scripts.js"></script>
   <script>
-    // ✅ Search Filter
     document.getElementById('searchBar').addEventListener('keyup', function(){
       const input = this.value.toLowerCase();
       document.querySelectorAll('.platform').forEach(p=>{
@@ -266,9 +241,7 @@
         p.style.display = title.includes(input) ? '' : 'none';
       });
     });
-
-    // ✅ Interceptor
-    document.addEventListener('DOMContentLoaded', ()=> window.SyzoHalloween && window.SyzoHalloween.attachInterceptors());
+    document.addEventListener('DOMContentLoaded', ()=> window.SyzoSnow && window.SyzoSnow.attachInterceptors());
   </script>
 </body>
 </html>
