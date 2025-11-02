@@ -69,3 +69,16 @@
     else audio.pause();
   });
 })();
+// ❄️ Confirm before downloading any file
+document.addEventListener("DOMContentLoaded", () => {
+  const downloadLinks = document.querySelectorAll('a[href$=".apk"], a[href$=".obb"], a[href$=".dat"], a[href$=".zip"], a[href*="metadata"]');
+
+  downloadLinks.forEach(link => {
+    link.addEventListener("click", event => {
+      const confirmDownload = confirm("Are you sure this is the right file?");
+      if (!confirmDownload) {
+        event.preventDefault();
+      }
+    });
+  });
+});
