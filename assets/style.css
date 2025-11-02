@@ -1,12 +1,12 @@
-/* 🎄 Syzo's Snowy Hub — Red & Green Christmas Edition */
+/* 🎄 Syzo's Snowy Hub — Blue Button Christmas Edition */
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  color: #fff;
-  background: linear-gradient(135deg, #065f46, #065f46, #9b111e);
+  color: #f0f9ff;
+  background: linear-gradient(135deg, #0b3d2e, #0e2433, #143f33);
   background-size: 300% 300%;
-  animation: gradientShift 25s ease infinite;
+  animation: gradientShift 30s ease infinite;
   overflow-x: hidden;
 }
 @keyframes gradientShift {
@@ -19,9 +19,9 @@ body {
 .snowflake {
   position: fixed;
   top: -5%;
-  color: #ffffff;
+  color: #fff;
   font-size: 1.3rem;
-  opacity: 0.9;
+  opacity: 0.8;
   animation: fall 12s linear infinite;
   left: var(--x);
   z-index: 0;
@@ -31,32 +31,30 @@ body {
   100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-/* 🎅 Header */
+/* HEADER */
 .header {
   text-align: center;
-  padding: 2.5rem 1rem 1.5rem;
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(6px);
-  border-bottom: 2px solid rgba(255,255,255,0.15);
-  box-shadow: 0 0 20px rgba(255,255,255,0.15);
+  padding: 2rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   position: relative;
 }
 .brand {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(173, 216, 230, 0.6);
   margin-bottom: 0.5rem;
 }
 .sub {
-  font-size: 1.1rem;
-  color: #d1fae5;
-  margin-bottom: 1.2rem;
+  color: #cce7ff;
+  font-size: 1rem;
 }
 
-/* 🎁 Buttons */
+/* BUTTONS */
 .btn {
-  background: linear-gradient(180deg, #dc2626, #b91c1c);
+  background: linear-gradient(180deg, #60a5fa, #3b82f6);
   border: none;
   padding: 0.6rem 1.3rem;
   border-radius: 8px;
@@ -69,53 +67,41 @@ body {
 }
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(248,113,113,0.8);
+  box-shadow: 0 0 15px rgba(147, 197, 253, 0.7);
 }
 .btn.primary {
-  background: linear-gradient(180deg, #16a34a, #166534);
-}
-.btn.nav {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
+  background: linear-gradient(180deg, #60a5fa, #2563eb);
 }
 
-/* 🧊 Content */
+/* CARDS + CONTENT */
 .container {
-  text-align: center;
   padding: 2rem;
+  text-align: center;
 }
 .intro-card {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 10px;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem;
   max-width: 650px;
   margin: 0 auto;
-  color: #f0fdf4;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  color: #e0f2fe;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
 }
-.intro-card h2 {
-  color: #bbf7d0;
-  margin-bottom: 0.6rem;
+
+/* SEARCH */
+.search {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: none;
+  width: 220px;
+  outline: none;
+  background-color: #e0f2fe;
+  color: #1e3a8a;
 }
 
-/* 🟢 Status Circles (same style for other pages) */
-.status-circle {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: 2px solid rgba(255,255,255,0.6);
-  box-shadow: 0 0 5px rgba(255,255,255,0.4);
-}
-.status-circle.green { background-color: #22c55e; }
-.status-circle.red { background-color: #ef4444; }
-.status-circle.white { background-color: #f8fafc; }
-.status-circle.blue { background-color: #3b82f6; }
-
-/* 🔊 Sound Button */
+/* SOUND BUTTON */
 .sound-btn {
   position: fixed;
   bottom: 20px;
@@ -128,30 +114,22 @@ body {
   height: 54px;
   font-size: 1.4rem;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
   transition: transform 0.2s;
 }
 .sound-btn:hover {
   transform: scale(1.1);
 }
 
-/* 💬 Footer */
+/* FOOTER */
 .footer {
   text-align: center;
   padding: 1.5rem;
-  background: rgba(0,0,0,0.25);
-  border-top: 2px solid rgba(255,255,255,0.1);
-  color: #f0fdf4;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  color: #cce7ff;
   font-size: 0.95rem;
-  box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
-}
-
-/* 📱 Responsive */
-@media (max-width: 600px) {
-  .brand { font-size: 1.8rem; }
-  .intro-card { padding: 1rem; width: 90%; }
 }
