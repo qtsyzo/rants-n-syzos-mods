@@ -1,110 +1,19 @@
-:root {
-  --red: #e53935;
-  --blue: #1e88e5;
-  --green: #43a047;
-  --text-light: #f8f9fa;
-  --accent-blue: #8ecbff;
-}
+/* === GAME TILE LAYOUT (Classic Style) === */
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  color: var(--text-light);
-  background: linear-gradient(120deg, var(--red), var(--blue), var(--green));
-  background-size: 200% 200%;
-  animation: gradientShift 12s ease infinite;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 36px 16px 20px;
-}
-
-.brand {
-  font-size: 2.8rem;
-  color: #fff;
-  text-shadow: 0 0 15px rgba(255,255,255,0.8);
-}
-
-.sub {
-  color: #f0f0f0;
-  margin: 10px 0 22px;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-/* BUTTONS */
-.btn {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: white;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.btn:hover {
-  background: rgba(255,255,255,0.3);
-  transform: translateY(-2px);
-}
-
-.btn.primary {
-  background: linear-gradient(90deg, #5dade2, #85c1e9);
-  border: none;
-  box-shadow: 0 0 15px rgba(93,173,226,0.4);
-}
-
-/* SEARCH BAR */
-.search {
-  display: block;
-  margin: 20px auto;
-  padding: 8px 14px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  width: 280px;
-  box-shadow: 0 0 10px rgba(255,255,255,0.15);
-}
-
-/* GAME GRID */
 .container, .game-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  padding: 40px;
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;              /* ✅ allows multiple rows */
+  justify-content: center;      /* center-align horizontally */
+  gap: 25px;                    /* space between tiles */
+  padding: 40px 20px;
 }
 
-/* PLATFORM / GAME BOX */
+/* Each tile (platform) */
 .platform {
   background: rgba(255,255,255,0.15);
   border-radius: 20px;
   width: 220px;
-  height: 220px;
+  height: 220px;                /* ✅ square boxes */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,11 +28,11 @@ body {
   box-shadow: 0 10px 28px rgba(0,0,0,0.35);
 }
 
-/* GAME CARD */
+/* The card inside each tile */
 .game-card {
   background: linear-gradient(180deg, #6db7ff 0%, #8fc9ff 100%);
   border-radius: 14px;
-  padding: 22px;
+  padding: 20px;
   color: white;
   text-align: center;
   font-weight: 600;
@@ -143,6 +52,7 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
+/* Game title & Meta link */
 .game-title {
   font-size: 1.1rem;
   margin: 10px 0 6px;
@@ -160,7 +70,7 @@ body {
   text-decoration: underline;
 }
 
-/* STATUS CIRCLES */
+/* Status circles (same as before) */
 .status-circle {
   width: 14px;
   height: 14px;
@@ -176,50 +86,3 @@ body {
 .red { background: #e57373; color: #e57373; }
 .blue { background: #64b5f6; color: #64b5f6; }
 .white { background: #fff; color: #fff; }
-
-/* SNOW */
-.snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-image: url("https://cdn.jsdelivr.net/gh/JulienMelissas/static-assets/snowflakes/snowflake-light.png");
-  background-repeat: repeat;
-  animation: snow 25s linear infinite;
-  opacity: 0.35;
-  z-index: 0;
-}
-
-@keyframes snow {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 1000px; }
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 24px;
-  color: #e0e0e0;
-  font-size: 0.95rem;
-}
-
-/* SOUND BUTTON */
-.sound-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #1e88e5 40%, #1565c0 90%);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 0 15px rgba(30,136,229,0.5);
-  cursor: pointer;
-  z-index: 20;
-}
