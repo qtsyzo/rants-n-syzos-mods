@@ -59,7 +59,7 @@
   <div class="link-box">
     <h2 style="color:#e43f5a;">Your Linking Code:</h2>
     <div id="linkCode" class="link-code">Loading...</div>
-    <button id="regenBtn" class="regen-btn" style="display:none;">🔄 Generate New Code</button>
+    <button id="regenBtn" class="regen-btn" style="display:none;">🔄 Reload your Code?</button>
     <p style="margin-top:16px; color:#444;">Use this code in your game to link your account.</p>
   </div>
 
@@ -90,7 +90,7 @@
     regenBtn.addEventListener("click", async () => {
       const deviceId = new URLSearchParams(window.location.search).get("device");
       if (!deviceId) return alert("Missing device ID.");
-      codeElem.textContent = "⏳ Generating new code...";
+      codeElem.textContent = "⏳ Reloading Code...";
       await fetch(`${apiBase}/new-code?device=${deviceId}&regen=1`);
       fetchCode(deviceId);
     });
