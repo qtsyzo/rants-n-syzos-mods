@@ -9,73 +9,93 @@
   <link rel="icon" type="image/png" href="../syzossnowypfp.png" />
 
   <meta property="og:title" content="Linking | Syzo's Snowy Hub" />
-  <meta property="og:description" content="Get your personal linking code from Syzo's Snowy Hub!" />
+  <meta property="og:description" content="Link your supporter account for Syzo's Mods here!" />
   <meta property="og:url" content="https://syzomods.com/linking/" />
-  <meta property="og:type" content="website" />
   <meta property="og:image" content="https://syzomods.com/syzossnowypfp.png" />
 </head>
+
 <body>
   <canvas id="snow-canvas"></canvas>
 
   <header class="header">
-    <h1 class="brand">🎅 Linking Portal 🎅</h1>
-    <p class="sub">Generate your personal linking code below!</p>
-
+    <h1 class="brand">🔗 Linking Portal</h1>
+    <p class="sub">Use this page to generate your linking code. It expires after 60 seconds!</p>
     <div class="controls">
       <a class="btn" href="/">🏠 Home</a>
-      <a class="btn" href="/apks/">📱 APKs</a>
-      <a class="btn" href="/metadatas/">🧠 Metadatas</a>
-      <a class="btn" href="/obbs/">📦 OBBs</a>
     </div>
   </header>
 
   <main class="container" style="text-align:center;">
-    <div id="link-box" style="
-      background:white;
-      border-radius:16px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.1);
-      padding:30px;
-      max-width:420px;
-      margin:auto;
-    ">
-      <h2 style="color:#e43f5a;">Your Linking Code:</h2>
-      <p id="code" style="
-        font-size:1.8rem;
-        font-weight:700;
-        color:#3562f1;
-        margin:20px 0;
-      ">Loading...</p>
-      <button id="newCode" class="btn primary">🔁 Generate New Code</button>
-      <p style="color:#555;margin-top:15px;font-size:.9rem;">Use this code in your game to link your account.</p>
+    <div id="link-box" class="link-box">
+      <h2>Your Linking Code:</h2>
+      <div id="code" class="link-code">Generating...</div>
+      <div id="timer" class="link-timer">Expires in: 60s</div>
+      <p style="margin-top:10px;">Enter this code using <b>/link-supporter</b> in Discord!</p>
     </div>
   </main>
 
   <footer class="footer">© 2025 Syzo | Christmas Edition 🎅</footer>
-
   <div class="sound-btn" id="soundToggle">🔊</div>
   <audio id="background-audio" src="../assets/coast-162.mp3" loop></audio>
-  <div id="version-badge" class="version-badge">v1.3</div>
 
   <script src="../assets/scripts.js"></script>
   <script>
-    const apiURL = 'https://link-bridge-rfug.onrender.com';
-    const codeEl = document.getElementById('code');
-    const btn = document.getElementById('newCode');
+    const LINK_API = "https://link-bridge-rfug.onrender.com";
+    const codeEl = document.getElementById("code");
+    const timerEl = document.getElementById("timer");
 
-    async function fetchCode() {
-      codeEl.textContent = 'Loading...';
-      try {
-        const res = await fetch(apiURL + '/new-code');
-        const data = await res.json();
-        if (data.code) codeEl.textContent = data.code;
-        else codeEl.textContent = '❌ Could not get code.';
-      } catch (err) {
-        codeEl.textContent = '⚠️ Error connecting to server.';
-      }
+    // fetch new linking code
+    fetch(LINK_API + "/new-code")
+      .then(res => res.json())
+      .then(data => {
+        codeEl.textContent = data.code;
+        startCountdown(data.expiresIn || 60);
+      })
+      .catch(() => codeEl.textContent = "❌ Failed to contact link server.");
+
+    // countdown
+    function startCountdown(seconds) {
+      let time = seconds;
+      timerEl.textContent = `Expires in: ${time}s`;
+      const interval = setInterval(() => {
+        time--;
+        timerEl.textContent = `Expires in: ${time}s`;
+        if (time <= 0) {
+          clearInterval(interval);
+          timerEl.textContent = "❌ Code expired. Refresh to get a new one.";
+          codeEl.style.color = "#e43f5a";
+        }
+      }, 1000);
     }
-
-    btn.addEventListener('click', fetchCode);
-    fetchCode();
   </script>
+
+  <style>
+    .link-box {
+      display:inline-block;
+      background: rgba(255,255,255,0.9);
+      padding: 28px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      margin-top: 40px;
+      animation: fadeIn 0.8s ease;
+    }
+    .link-code {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #39d98a;
+      margin-top: 10px;
+      letter-spacing: 2px;
+    }
+    .link-timer {
+      font-weight: 600;
+      color: #3562f1;
+      margin-top: 8px;
+      font-size: 1.1rem;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:translateY(10px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+  </style>
 </body>
 </html>
