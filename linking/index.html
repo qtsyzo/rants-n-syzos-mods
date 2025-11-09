@@ -31,6 +31,8 @@
       <div id="code" class="link-code">Generating...</div>
       <div id="timer" class="link-timer">Expires in: 60s</div>
       <p style="margin-top:10px;">Enter this code using <b>/link-supporter</b> in Discord!</p>
+
+      <button id="regen-btn" class="regen-btn hidden">🔁 Generate New Code</button>
     </div>
   </main>
 
@@ -43,30 +45,45 @@
     const LINK_API = "https://link-bridge-rfug.onrender.com";
     const codeEl = document.getElementById("code");
     const timerEl = document.getElementById("timer");
+    const regenBtn = document.getElementById("regen-btn");
 
-    // fetch new linking code
-    fetch(LINK_API + "/new-code")
-      .then(res => res.json())
-      .then(data => {
-        codeEl.textContent = data.code;
-        startCountdown(data.expiresIn || 60);
-      })
-      .catch(() => codeEl.textContent = "❌ Failed to contact link server.");
+    let timerInterval;
 
-    // countdown
+    function fetchNewCode() {
+      clearInterval(timerInterval);
+      codeEl.textContent = "Generating...";
+      codeEl.style.color = "#39d98a";
+      timerEl.textContent = "";
+      regenBtn.classList.add("hidden");
+
+      fetch(LINK_API + "/new-code")
+        .then(res => res.json())
+        .then(data => {
+          codeEl.textContent = data.code;
+          startCountdown(data.expiresIn || 60);
+        })
+        .catch(() => {
+          codeEl.textContent = "❌ Failed to contact link server.";
+        });
+    }
+
     function startCountdown(seconds) {
       let time = seconds;
       timerEl.textContent = `Expires in: ${time}s`;
-      const interval = setInterval(() => {
+      timerInterval = setInterval(() => {
         time--;
         timerEl.textContent = `Expires in: ${time}s`;
         if (time <= 0) {
-          clearInterval(interval);
-          timerEl.textContent = "❌ Code expired. Refresh to get a new one.";
+          clearInterval(timerInterval);
+          timerEl.textContent = "❌ Code expired.";
           codeEl.style.color = "#e43f5a";
+          regenBtn.classList.remove("hidden");
         }
       }, 1000);
     }
+
+    regenBtn.addEventListener("click", fetchNewCode);
+    fetchNewCode();
   </script>
 
   <style>
@@ -91,6 +108,24 @@
       color: #3562f1;
       margin-top: 8px;
       font-size: 1.1rem;
+    }
+    .regen-btn {
+      margin-top: 18px;
+      background: black;
+      color: white;
+      font-weight: 600;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .regen-btn:hover {
+      background: #222;
+      transform: scale(1.05);
+    }
+    .regen-btn.hidden {
+      display: none;
     }
     @keyframes fadeIn {
       from {opacity:0; transform:translateY(10px);}
