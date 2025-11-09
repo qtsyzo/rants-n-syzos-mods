@@ -90,7 +90,7 @@
     regenBtn.addEventListener("click", async () => {
       const deviceId = new URLSearchParams(window.location.search).get("device");
       if (!deviceId) return alert("Missing device ID.");
-      codeElem.textContent = "⏳ Reloading Code...";
+      codeElem.textContent = "⏳ Reloading...";
       await fetch(`${apiBase}/new-code?device=${deviceId}&regen=1`);
       fetchCode(deviceId);
     });
